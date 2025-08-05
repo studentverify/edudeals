@@ -8,7 +8,8 @@
     var repoName = "edudeals";
     var repoIndex = pathSegments.indexOf(repoName);
     var basePath = repoIndex !== -1 ? "/" + repoName + "/" : "/";
-    window.location.replace(window.location.origin + basePath);
+    sessionStorage.redirect = location.href;
+    window.location.replace(window.location.origin + basePath + '?p=' + location.pathname.slice(1));
   </script>
 </head>
 <body>
