@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  <script>
+    var pathSegments = window.location.pathname.split("/");
+    var repoName = "edudeals";
+    var repoIndex = pathSegments.indexOf(repoName);
+    var basePath = repoIndex !== -1 ? "/" + repoName + "/" : "/";
+    sessionStorage.redirect = location.href;
+    window.location.replace(window.location.origin + basePath + '?p=' + location.pathname.slice(1));
+  </script>
+</head>
+<body>
+  If you are not redirected automatically, follow this <a href="/">link</a>.
+</body>
+</html>
+
