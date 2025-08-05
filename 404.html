@@ -4,19 +4,22 @@
   <meta charset="utf-8">
   <title>Redirecting...</title>
   <script>
-    // Simple redirect to index.html for GitHub Pages SPA routing
-    var pathSegments = window.location.pathname.split('/');
-    var repoName = 'edudeals';
-    var repoIndex = pathSegments.indexOf(repoName);
-    
-    if (repoIndex !== -1) {
-      // We're on GitHub Pages with repo name in path
-      var basePath = '/' + repoName + '/';
-      window.location.replace(window.location.origin + basePath + '?p=' + window.location.pathname.substring(basePath.length) + window.location.search + window.location.hash);
-    } else {
-      // Local development or custom domain
-      window.location.replace(window.location.origin + '/?p=' + window.location.pathname.substring(1) + window.location.search + window.location.hash);
-    }
+    // Get the base URL for the current deployment
+    var base = window.location.origin;
+    // Get the path of the current URL
+    var path = window.location.pathname;
+
+    // Construct the new URL by combining the base URL and the path
+    // This is crucial for GitHub Pages to correctly route SPAs
+    var newUrl = base + 
+      (window.location.pathname.startsWith("/edudeals") ? "/edudeals" : "") + 
+      "/?p=" + 
+      window.location.pathname.substring(1) + 
+      window.location.search + 
+      window.location.hash;
+
+    // Redirect to the new URL
+    window.location.replace(newUrl);
   </script>
 </head>
 <body>
